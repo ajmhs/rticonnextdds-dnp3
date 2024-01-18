@@ -12,7 +12,7 @@
 #include <stdlib.h>
 
 #include "MessageBusImpl.h"
-#include <DNP3/AsyncStackManager.h>
+#include <opendnp3/DNP3/AsyncStackManager.h>
 
 namespace rti {
 namespace dnp3 {

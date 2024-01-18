@@ -14,12 +14,12 @@
 #include <boost/ptr_container/detail/map_iterator.hpp>
 #include "MessageBusImpl.h"
 
-#include <DNP3/AsyncStackManager.h>
+#include <opendnp3/DNP3/AsyncStackManager.h>
 
-#include <APL/Log.h>
-#include <APL/Loggable.h>
-#include <APL/PhysLayerSettings.h>
-#include <APL/SerialTypes.h>
+#include <opendnp3/APL/Log.h>
+#include <opendnp3/APL/Loggable.h>
+#include <opendnp3/APL/PhysLayerSettings.h>
+#include <opendnp3/APL/SerialTypes.h>
 
 namespace rti {
 namespace dnp3 {

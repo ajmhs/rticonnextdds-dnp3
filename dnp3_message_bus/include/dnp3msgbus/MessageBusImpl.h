@@ -16,11 +16,11 @@
 
 #include <boost/ptr_container/ptr_map.hpp>
 
-#include <APL/Log.h>
-#include <APL/Loggable.h>
-#include <DNP3/APDUProxy.h>
-#include <DNP3/AsyncStackManager.h>
-#include <DNP3/APDUListener.h>
+#include <opendnp3/APL/Log.h>
+#include <opendnp3/APL/Loggable.h>
+#include <opendnp3/DNP3/APDUProxy.h>
+#include <opendnp3/DNP3/AsyncStackManager.h>
+#include <opendnp3/DNP3/APDUListener.h>
 
 #include "Utils.h"
 #include "MessageBus.h"

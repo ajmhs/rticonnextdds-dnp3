@@ -23,11 +23,11 @@ ifeq ($(PLATFORM),)
 endif
 export PLATFORM
 
-DNP3_TOOLS_HOME	= $(DNP3_HOME)/../dnp3-tools
-DNP3_TOOLS_HOME_EXISTS= $(shell test -d $(DNP3_TOOLS_HOME) && echo yes || echo no)
-ifeq ($(DNP3_TOOLS_HOME_EXISTS),no)
-  $(error $(DNP3_TOOLS_HOME) missing! Please build dnp3 repo first!)
-endif
+#DNP3_TOOLS_HOME	= $(DNP3_HOME)/../dnp3-tools
+#DNP3_TOOLS_HOME_EXISTS= $(shell test -d $(DNP3_TOOLS_HOME) && echo yes || echo no)
+#ifeq ($(DNP3_TOOLS_HOME_EXISTS),no)
+#  $(error $(DNP3_TOOLS_HOME) missing! Please build dnp3 repo first!)
+#endif
 
 CC				= g++
 CLD				= g++
@@ -46,7 +46,7 @@ ifneq ($(findstring i86,$(PLATFORM)),)
 endif
 ifneq ($(findstring x64,$(PLATFORM)),)
   CFLAGS			+= -DRTI_UNIX -DRTI_LINUX -DRTI_64BIT -m64
-  CLDFLAGS 		+= -m64 -L /lib64 -l pthread
+  CLDFLAGS 		+= -m64 -L /lib64 -pthread 
 endif
 
 #CLDFLAGS += -static-libstdc++ -static-libgcc
@@ -55,7 +55,8 @@ CFLAGS			+= -fPIC
 SYSLIBS 		= -ldl -lnsl -lm -lpthread -lrt 
 
 #### DIRECTORY DEFINITIONS ####
-BOOST_DIR		= $(DNP3_TOOLS_HOME)/boostlib/boost_1_47_0/Linux_i686
+#BOOST_DIR		= $(DNP3_TOOLS_HOME)/boostlib/boost_1_47_0/Linux_i686
+BOOST_DIR       = /usr/lib/x86_64-linux-gnu/
 SOURCES_DIR		= src
 BUILD_DIR_NAME	= objs
 BUILD_DIRS 		= $(BUILD_DIR_NAME).dir $(BUILD_DIR_NAME)/$(PLATFORM).dir
@@ -64,16 +65,12 @@ OUTPUT_DIRS		= $(OUTPUT_DIR_NAME).dir $(OUTPUT_DIR_NAME)/$(PLATFORM).dir
 
 #### DEPENDENCIES DEFINITIONS ####
 INCLUDES 		+= -Iinclude -Iinclude/dnp3msgbus \
-				   -I$(DNP3_HOME) \
-				   -I$(DNP3_TOOLS_HOME)/boostlib/boost_1_47_0/include
+				   -I$(DNP3_HOME)/src \
+				   -I$(BOOST_DIR)/include
 
-
-DNP3_LIBS 		= $(DNP3_HOME)/APL/Linux_i686/$(DNP3_RELEASE)/libapl.a \
-				 $(DNP3_HOME)/DNP3/Linux_i686/$(DNP3_RELEASE)/libdnp3.a
-				  
-#BOOST_LIBS		= -L$(BOOST_DIR) -lboost_thread -lboost_system
-BOOST_LIBS		= $(BOOST_DIR)/libboost_thread.a \
-             	  $(BOOST_DIR)/libboost_system.a
+DNP3_LIBS 		= $(DNP3_HOME)/build/.libs/libopendnp3.a
+                  
+BOOST_LIBS		= -L$(BOOST_DIR) -lboost_thread -lboost_system
 
 #### SOURCE FILES DEFINITIONS ####
 SOURCES_CPP		+= MessageBus.cpp \

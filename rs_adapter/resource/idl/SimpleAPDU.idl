@@ -29,7 +29,7 @@ module dnp3 {
     /* Simple APDU type - opaque DNP3 paylod */    
 
     const unsigned long APDU_MAX_BUFFER_SIZE = 2048;
-    typedef sequence<octet,APDU_MAX_BUFFER_SIZE> APDUBuffer; //@top-level false
+    typedef sequence<octet,APDU_MAX_BUFFER_SIZE> APDUBuffer; 
     
     struct SimpleAPDU {
         EndpointId src; //@key

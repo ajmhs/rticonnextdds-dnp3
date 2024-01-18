@@ -137,7 +137,7 @@ int main(
 
 		int argc,
 		char** argv) {
-	EventLog log;
+	apl::EventLog log;
 	log.AddLogSubscriber(LogToStdio::Inst());
 	const FilterLevel LOG_LEVEL = DEBUG_LEVEL;
 

@@ -11,8 +11,8 @@
 
 #include <stdlib.h>
 
-#include <APL/Log.h>
-#include <APL/LogToStdio.h>
+#include <opendnp3/APL/Log.h>
+#include <opendnp3/APL/LogToStdio.h>
 
 #include "MessageBus.h"
 #include "MessageBusImpl.h"

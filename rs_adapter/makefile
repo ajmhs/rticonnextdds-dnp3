@@ -41,11 +41,12 @@ ifeq ($(PLATFORM),)
 endif
 export PLATFORM
 
-DNP3_TOOLS_HOME	= $(DNP3_HOME)/../dnp3-tools
-DNP3_TOOLS_HOME_EXISTS=$(shell test -d $(DNP3_TOOLS_HOME) && echo yes||echo no)
-ifeq ($(DNP3_TOOLS_HOME_EXISTS),no)
-  $(error $(DNP3_TOOLS_HOME) missing! Please build dnp3 repo first!)
-endif
+#DNP3_TOOLS_HOME	= $(DNP3_HOME)/../dnp3-tools
+#DNP3_TOOLS_HOME_EXISTS=$(shell test -d $(DNP3_TOOLS_HOME) && echo yes||echo no)
+#ifeq ($(DNP3_TOOLS_HOME_EXISTS),no)
+#  $(error $(DNP3_TOOLS_HOME) missing! Please build dnp3 repo first!)
+#endif
+BOOST_DIR       = /usr/lib/x86_64-linux-gnu/
 
 ifeq ($(MSGBUSHOME),)
 	MSGBUSHOME = $(CURDIR)/../dnp3_message_bus
@@ -89,7 +90,7 @@ NDDS_CPP_LIBS =	-L$(NDDSHOME)/lib/$(PLATFORM) \
 		-lnddscz$(FILE_SUFFIX) \
 		-lnddscorez$(FILE_SUFFIX) \
 
-NDDSGEN = $(NDDSGENHOME)/scripts/rtiddsgen
+NDDSGEN = $(NDDSGENHOME)/bin/rtiddsgen
 
 
 IDL_NAME_SimpleAPDU = SimpleAPDU
@@ -159,7 +160,7 @@ INCLUDES_C = -Iinclude -Iinclude/adapter \
 			-I$(ROUTER_HOME)/include \
 			-I$(MSGBUSHOME)/include \
 			-I$(DNP3_HOME) \
-			-I$(DNP3_TOOLS_HOME)/boostlib/boost_1_47_0/include
+			-I$(BOOST_DIR)/include
 			
 MSGBUS_SO = $(MSGBUSHOME)/../lib/$(PLATFORM)/libdnp3messagebus$(FILE_SUFFIX).so
 
