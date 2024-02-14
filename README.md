@@ -13,6 +13,61 @@ rticonnextdds-dnp3
 ==================
 DNP3 Adapter for RTI Connext DDS Routing Service
 
+This is a fork of rticommunity/rticonnextdds-dnp3 
+which takes the latest branch of gec/dnp3 and replays
+the changes from rajive/dnp3 on top. 
+This removes the need for Rake.
+
+## DNP3
+
+link: https://github.com/ajmhs/dnp3/tree/bullseye_libboost1_74
+    
+To build the libs:  
+
+`apt-get install libboost-all-dev`  
+`git clone -b bullseye_libboost1_74 https://github.com/ajmhs/dnp3.git`  
+`cd dnp3`  
+`autoreconf -f -i`  
+`mkdir build && cd build`  
+`../configure --with-boost-libdir=/usr/lib/x86_64-linux-gnu/`  
+`make`  
+
+
+## rticonnextdds-dnp3  
+link: https://github.com/ajmhs/rticonnextdds-dnp3/tree/bullseye_libboost1_74  
+
+`git clone -b bullseye_libboost1_74 https://github.com/ajmhs/rticonnextdds-dnp3.git`
+
+ 
+### build dnp_message_bus
+     
+`cd rticonnextdds-dnp3/dnp3_message_bus`  
+`DEBUG=1 \`  
+`PLATFORM=x64Linux4gcc7.3.0 \`  
+`DNP3_HOME=../../dnp3 \`  
+`make`  
+
+### rs_adapter
+
+Ensure RTI Connext is installed and the NDDS_HOME variable is correctly configured
+
+`cd rticonnextdds-dnp3/rs_adapter`  
+`DEBUG=1 \`  
+`PLATFORM=x64Linux4gcc7.3.0 \`  
+`DNP3_HOME=../..//dnp3 \`  
+`NDDS_HOME=$NDDS_HOME \`  
+`ROUTER_HOME=${NDDS_HOME}/bin \`  
+`make`  
+
+*n.b. src/dds_c/SimpleAPDU.c appears to be missing* 
+---
+
+Below is the old documentation  
+
+rticonnextdds-dnp3
+==================
+DNP3 Adapter for RTI Connext DDS Routing Service
+
 To build the DNP3 Adapter for RTI Connext DDS Routing Service
 
 1. Build required dependencies: [dnp3++][] library
